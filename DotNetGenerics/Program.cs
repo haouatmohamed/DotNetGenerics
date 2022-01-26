@@ -11,6 +11,8 @@ namespace DotNetGenerics
             list.Add(new Employee("Med", 1000, Team.Development));
             list.Add(new Freelancer("Ht", 2000, Team.Operation)); // very bad
             list.Add(3); // yes, it possible ! 
+
+            // How to fix that ? 
         }
     }
 }
