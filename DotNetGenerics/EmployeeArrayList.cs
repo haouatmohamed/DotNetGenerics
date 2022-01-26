@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DotNetGenerics
 {
     internal sealed class EmployeeArrayList
     {
         private Employee[] _employees;
-        private int size;
+        private int _size;
 
         public EmployeeArrayList(int initialCapacity)
         {
@@ -16,10 +14,10 @@ namespace DotNetGenerics
 
         public void Add(Employee employee)
         {
-            if (size < _employees.Length - 1)
+            if (_size < _employees.Length - 1)
             {
-                _employees[size] = employee;
-                size++;
+                _employees[_size] = employee;
+                _size++;
             }
             else
             {
@@ -30,8 +28,24 @@ namespace DotNetGenerics
                 }
 
                 newEmployeeCollection[_employees.Length + 1] = employee;
-                size = _employees.Length + 1;
+                _size = _employees.Length + 1;
                 _employees = newEmployeeCollection;
+            }
+        }
+
+        public Employee this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= _size)
+                    throw new IndexOutOfRangeException();
+                return _employees[index]; 
+            }
+            set
+            {
+                if (index < 0 || index >= _size)
+                    throw new IndexOutOfRangeException();
+                _employees[index] = value;
             }
         }
     }
